@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import '../App.css'
+// import '../App.css'
+import './Nav.module.css'
 import { FaCalendarAlt, FaDoorOpen, FaUsers } from 'react-icons/fa'
 import BookablesPage from '../Bookables/BookablesPage'
 import BookingsPage from '../Bookings/BookingsPage'

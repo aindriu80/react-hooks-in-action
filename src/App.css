@@ -186,3 +186,7 @@ main {
   background: var(--primary);
   color: var(--light-text);
 }
+.li {
+  list-style: none;
+  list-style: none;
+}
