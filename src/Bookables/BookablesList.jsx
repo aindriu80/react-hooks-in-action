@@ -1,34 +1,37 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import { bookables } from '../../static.json'
-
 import classes from './BookablesPage.module.css'
+import { FaArrowRight } from 'react-icons/fa'
 
 export default function BookablesList() {
   const group = 'Rooms'
-
   const bookablesInGroup = bookables.filter((b) => b.group === group)
+  const [bookableIndex, setBookableIndex] = useState(1)
 
-  let bookableIndex = 1
-
-  function changeBookable(selectedIndex) {
-    bookableIndex = selectedIndex
-    console.log(selectedIndex)
+  function nextBookable() {
+    setBookableIndex((i) => (i + 1) % bookablesInGroup.length)
   }
 
   return (
-    // <ul className="bookables item-list-nav">
-    <ul className={classes.li}>
-      {bookablesInGroup.map((b, i) => (
-        <li
-          className={classes.li}
-          key={b.d}
-          className={i === bookableIndex ? 'selected' : null}>
-          <button className={classes.btn} onClick={() => changeBookable(i)}>
-            {b.title}
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul className={classes.li}>
+        {bookablesInGroup.map((b, i) => (
+          <li
+            className={classes.li}
+            key={b.id}
+            className={i === bookableIndex ? 'selected' : null}>
+            <button className="btn" onClick={() => setBookableIndex(i)}>
+              {b.title}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>
+        <button className="btn" onClick={nextBookable} autoFocus>
+          <FaArrowRight />
+          <span>Next</span>
+        </button>
+      </p>
+    </div>
   )
 }
