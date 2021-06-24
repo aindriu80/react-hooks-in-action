@@ -7,11 +7,18 @@ export default function BookablesList() {
   const [group, setGroup] = useState('Kit')
   const bookablesInGroup = bookables.filter((b) => b.group === group)
   const [bookableIndex, setBookableIndex] = useState(0)
-  const groups = [...new Set(bookables.map((b) => b.group))]
+  // const groups = [...new Set(bookables.map((b) => b.group))]
 
   function nextBookable() {
     setBookableIndex((i) => (i + 1) % bookablesInGroup.length)
   }
+  function getUniqueValues(array, property) {
+    const propValues = array.map((element) => element[property])
+    const uniqueValues = new Set(propValues)
+    const uniqueValuesArray = [...uniqueValues]
+    return uniqueValuesArray
+  }
+  const groups = getUniqueValues(bookables, 'group')
 
   return (
     <div>
